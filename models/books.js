@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes)=>
             timestamps:false
         }
    )
+   // If there is not book table , create it. 
    // Books.sync ( { force:true });
 
    return Books

@@ -1,6 +1,23 @@
 const { sequelize, Sequelize } = require('../config/database');
 const bookModel = require("../models/books")(sequelize,Sequelize)
 
+exports.showAll = (req,res)=> {
+
+    bookModel.findAll(
+        {
+          order:[['title','ASC']]
+    }
+    ).then(results=> {
+        console.log(results);
+        res.render('showAllView',{ layout:false, results_form:results })
+    }).catch(err => {
+        res.status(500).send({message: "Error" + err.message})
+    })
+
+
+}
+
+
 exports.show = (req,res) =>{
 
     res.render("show",{layout:false,
