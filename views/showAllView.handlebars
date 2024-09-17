@@ -15,6 +15,8 @@
             <th scope="col">#</th>
             <th scope="col">Title</th>
             <th scope="col">Description</th>
+            <th scope="col">  </th>
+            <th scope="col">  </th>
         </thead>
 
         <tbody>
@@ -23,6 +25,9 @@
                 <td>{{ id }}</td>
                 <td>{{ title }}</td>
                 <td>{{ description }}</td>
+                <td><a href="/edit/{{ id }}">Edit</a> </td>
+                <td><a href="/delete/{{ id }}">Delete</a></td>
+
             </tr>
             {{/each}}
         </tbody>

@@ -18,14 +18,6 @@ exports.showAll = (req,res)=> {
 }
 
 
-exports.show = (req,res) =>{
-
-    res.render("show",{layout:false,
-         title:req.body.title,
-         description:req.body.description
-    })
-
-}
 
 exports.insertData = (req,res) =>
 {
@@ -45,4 +37,25 @@ exports.insertData = (req,res) =>
 
 exports.showForm = (req,res) =>{
     res.render("form",{layout:false})
+}
+
+exports.delete = (req,res) => {
+    const id_param = req.params.id;
+    bookModel.destroy({
+        where: {id:id_param}
+
+
+    }).then((result)=>{
+        if(!result){
+            req.status(400).json(
+                {message:"An error occurred..."}
+            );
+        }
+        res.redirect("/showall");
+    }).catch((err)=> {
+        res.status(500).json({message:"Could not delete such object."});
+        console.log(err);
+    }
+)
+   
 }
