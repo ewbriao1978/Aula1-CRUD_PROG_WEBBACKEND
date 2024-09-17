@@ -59,3 +59,45 @@ exports.delete = (req,res) => {
 )
    
 }
+
+exports.editForm = (req,res) =>{
+
+    const id_param = req.params.id;
+    bookModel.findByPk(id_param).then(result => {
+        res.render("editform",
+            {
+             layout:false, 
+             id:id_param,
+             results_data:result 
+            }
+        ) // render
+    }
+
+).catch(err => {
+    res.status(500).json({message:"Error... Je suis désolé..."});
+    console.log(err);
+})//catch
+   
+}// editForm
+
+exports.update = (req,res) => {
+
+    bookModel.update(
+    {
+        title:req.body.title,
+        description: req.body.description
+    },{
+        where: {id: req.body.id_for_updating}
+    }
+   ).then(anything=>{
+       if(!anything){
+        req.status(400).send({message:"An error ocurred."})
+       }
+       res.redirect('/showall');
+   }).catch(err=>{
+    res.status(500).send({
+        message: "Error when trying to access the database"
+    })
+   })
+
+}// update

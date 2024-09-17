@@ -7,5 +7,7 @@ router.get('/',myController.showForm);
 router.post('/',myController.insertData);
 router.get('/showall',myController.showAll);
 router.get('/delete/:id',myController.delete);
+router.get('/edit/:id',myController.editForm);
+router.post('/update',myController.update);
 
 module.exports = router
