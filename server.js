@@ -10,8 +10,8 @@ const appRoutes = require('./routes/approutes');
 
 app = express();
 
-const {sequelize, Sequelize} = require('./config/database')
-const booksModel = require("./models/books")(sequelize,Sequelize)
+//const {sequelize, Sequelize} = require('./config/database')
+//const booksModel = require("./models/books")(sequelize,Sequelize)
 
 app.use (express.urlencoded({extended:false}));
 app.use (express.json());
